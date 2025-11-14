@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16
+    container_name: chainquery_db_container 
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: chainquery_db
+    volumes:
+      # Use a new, Docker-managed named volume
+      - chainquery_pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  
+  # pgAdmin service for database management
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@chainquery.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "8080:80"
+
+# Explicitly define the named volume
+volumes:
+  chainquery_pg_data:

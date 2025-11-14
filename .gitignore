@@ -1,0 +1,9 @@
+# Compiled Go binary
+chain-query
+main
+
+# Environment files
+*.env
+
+# macOS system files
+.DS_Store
